@@ -19,7 +19,7 @@ class App extends Component {
       guessList: '',
       feedback: ''
     }
-    console.log(this.state);
+
 
   }
 
@@ -28,6 +28,7 @@ class App extends Component {
     this.setState({
       userGuess
     });
+    console.log(this.state);
   }
 
 
@@ -55,8 +56,8 @@ class App extends Component {
             <div className="App-header">
             </div>
             <FeedBack />
-            <GuessForm/>
-            <GuessList />
+            <GuessForm onChange={userGuess => this.setUserGuess(userGuess)}/>
+            <GuessList userGuess={this.state.userGuess} />
           </div>
         );
       }
