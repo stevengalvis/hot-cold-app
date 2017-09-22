@@ -10,6 +10,8 @@ export default function GuessList(props) {
     // list items
     <div className="guessList">
       <span>{props.userGuess}</span>
+      <h2>Total Guesses ={props.count}</h2>
+      <h3>Your guessed nunbers</h3>
       <ul>
         {guessList}
       </ul>
