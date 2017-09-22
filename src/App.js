@@ -16,19 +16,34 @@ class App extends Component {
     this.state = {
       winningNumber,
       userGuess: '',
-      guessList: '',
+      guessList: [],
       feedback: ''
     }
 
 
   }
 
+  checkUserGuess(userGuess) {
+    if (this.state.userGuess !== this.state.winningNumber) {
+      // console.log(this.state);
+        this.setGuessList(userGuess);
+    }
+    this.renderFeedback(userGuess);
+
+  }
+
+  renderFeedback(userGuess) {
+    let numberDifference = Math.abs(this.state.winningNumber - this.state.userGuess);
+    console.log(numberDifference);
+  }
 
   setUserGuess(userGuess) {
     this.setState({
       userGuess
     });
-    console.log(this.state);
+    this.checkUserGuess(userGuess);
+
+
   }
 
 
@@ -38,17 +53,15 @@ class App extends Component {
       });
     }
 
-      setGuessList(guessList) {
+      setGuessList(userGuess) {
         this.setState({
-          guessList
+          guessList: [...this.state.guessList,
+            userGuess
+          ]
         });
       }
 
-      checkUserGuess(userGuess) {
-        if (this.state.userGuess !== this.state.winningNumber) {
-          // render feedback
-        }
-      }
+
 
       render() {
         return (
@@ -57,7 +70,7 @@ class App extends Component {
             </div>
             <FeedBack />
             <GuessForm onChange={userGuess => this.setUserGuess(userGuess)}/>
-            <GuessList userGuess={this.state.userGuess} />
+            <GuessList userGuess={this.state.userGuess} guessList={this.state.guessList}/>
           </div>
         );
       }
