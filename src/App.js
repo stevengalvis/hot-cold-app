@@ -24,37 +24,48 @@ class App extends Component {
 
   }
 
+
   checkUserGuess(userGuess) {
     if (this.state.userGuess !== this.state.winningNumber) {
-      console.log(this.state);
+        this.renderFeedback(userGuess);
         this.setGuessList(userGuess);
+
     }
-    this.renderFeedback(userGuess);
+     else if  (this.state.userGuess == this.state.winningNumber) {
+       this.setFeedback('you win!');
+         this.setGuessList(userGuess);
+     }
+
 
   }
 
   renderFeedback(userGuess) {
-  console.log(`user guess: ${this.state.userGuess}`);
+
     let numberDifference = Math.abs(this.state.winningNumber - this.state.userGuess);
 
     if (numberDifference >= 15) {
       this.setFeedback('cold');
     }
+    else if(numberDifference >= 30) {
+      this.setFeedback('very cold');
+    }
+
     else {
       this.setFeedback('hot');
     }
 
   }
 
-  setUserGuess(userGuess) {
+  setUserGuess(guessSubmitted) {
     this.setState({
-      userGuess,
+      userGuess: guessSubmitted,
       count: this.state.count+=1
-    });
-    this.checkUserGuess(userGuess);
-
-
-
+    },function(){
+      // this.setGuessList(guessSubmitted);
+      console.log(this.state);
+      this.checkUserGuess(guessSubmitted);
+      // this.checkUserGuess(guessSubmitted);
+    } );
   }
 
 
@@ -80,7 +91,7 @@ class App extends Component {
             <div className="App-header">
             </div>
             <FeedBack feedback={this.state.feedback} />
-            <GuessForm onChange={userGuess => this.setUserGuess(userGuess)}/>
+            <GuessForm onChange={val => this.setUserGuess(val)}/>
             <GuessList userGuess={this.state.userGuess} guessList={this.state.guessList} count={this.state.count}/>
           </div>
         );

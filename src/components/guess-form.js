@@ -4,7 +4,6 @@ export default function GuessForm(props) {
   return (
     <form onSubmit={e => {
         e.preventDefault();
-        console.log(e.target.firstChild.value);
         props.onChange(e.target.firstChild.value);
         e.target.firstChild.value = '';
       }}>
