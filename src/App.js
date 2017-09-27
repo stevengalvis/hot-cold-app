@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 import GuessForm from './components/guess-form';
 import GuessList from './components/guessList'
@@ -31,7 +31,7 @@ class App extends Component {
         this.setGuessList(userGuess);
 
     }
-     else if  (this.state.userGuess == this.state.winningNumber) {
+     else if  (this.state.userGuess === this.state.winningNumber) {
        this.setFeedback('you win!');
          this.setGuessList(userGuess);
      }
