@@ -59,7 +59,7 @@ class App extends Component {
   setUserGuess(guessSubmitted) {
     this.setState({
       userGuess: guessSubmitted,
-      count: this.state.count+=1
+      count: this.state.count + 1       
     },function(){
       // this.setGuessList(guessSubmitted);
       console.log(this.state);
